@@ -175,7 +175,8 @@ class HashMap:
         Args:
             key: they key to search for and remove along with its value
         """
-        # FIXME: Write this function
+        hash_value = self._hash_function(key) % self.capacity
+        self._buckets[hash_value].remove(key)
 
     def contains_key(self, key):
         """
