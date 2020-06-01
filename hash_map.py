@@ -154,6 +154,7 @@ class HashMap:
 
         # Add the key, value pair to the correct bucket
         self._buckets[hash_value].add_front(key, value)
+        self.size += 1
 
     def remove(self, key):
         """
@@ -180,7 +181,7 @@ class HashMap:
         Returns:
             The number of empty buckets in the table
         """
-        # FIXME: Write this function
+        return sum(1 for bucket in self._buckets if bucket.size == 0)
 
     def table_load(self):
         """
