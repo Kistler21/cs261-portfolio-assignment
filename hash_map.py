@@ -127,7 +127,13 @@ class HashMap:
         Return:
             The value associated to the key. None if the link isn't found.
         """
-        # FIXME: Write this function
+        hash_value = self._hash_function(key) % self.capacity
+
+        # Return the value if the key exists
+        node = self._buckets[hash_value].contains(key)
+        if node is not None:
+            return node.value
+        return None
 
     def resize_table(self, capacity):
         """
