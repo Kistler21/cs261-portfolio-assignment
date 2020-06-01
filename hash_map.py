@@ -3,6 +3,7 @@
 # Implement a hash map with chaining
 # ===================================================
 
+
 class SLNode:
     def __init__(self, key, value):
         self.next = None
@@ -166,7 +167,6 @@ class HashMap:
                 self._buckets.pop(-1)
 
         self.capacity = capacity
-                
 
     def put(self, key, value):
         """
