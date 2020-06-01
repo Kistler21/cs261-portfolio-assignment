@@ -52,9 +52,9 @@ class LinkedList:
     def contains(self, key):
         """Searches linked list for a node with a given key
         Args:
-        	key: key of node
+            key: key of node
         Return:
-        	node with matching key, otherwise None"""
+            node with matching key, otherwise None"""
         if self.head is not None:
             cur = self.head
             while cur is not None:
@@ -102,7 +102,7 @@ class HashMap:
 
     def __init__(self, capacity, function):
         self._buckets = []
-        for i in range(capacity):
+        for _ in range(capacity):
             self._buckets.append(LinkedList())
         self.capacity = capacity
         self._hash_function = function
@@ -144,7 +144,16 @@ class HashMap:
             key: they key to use to has the entry
             value: the value associated with the entry
         """
-        # FIXME: Write this function
+        hash_value = self._hash_function(key) % self.capacity
+
+        # Check if key has already been added
+        node = self._buckets[hash_value].contains(key)
+        if node is not None:
+            node.value = value
+            return
+
+        # Add the key, value pair to the correct bucket
+        self._buckets[hash_value].add_front(key, value)
 
     def remove(self, key):
         """
