@@ -189,7 +189,7 @@ class HashMap:
             the ratio of (number of links) / (number of buckets) in the table as a float.
 
         """
-        # FIXME: Write this function
+        return float(self.size) / self.capacity
 
     def __str__(self):
         """
