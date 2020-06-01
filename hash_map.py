@@ -179,7 +179,10 @@ class HashMap:
             True if the key is found False otherwise
 
         """
-        # FIXME: Write this function
+        hash_value = self._hash_function(key) % self.capacity
+
+        # Return whether the linked list contains the key
+        return self._buckets[hash_value].contains(key) is not None
 
     def empty_buckets(self):
         """
@@ -194,7 +197,7 @@ class HashMap:
             the ratio of (number of links) / (number of buckets) in the table as a float.
 
         """
-        return float(self.size) / self.capacity
+        return self.size / self.capacity
 
     def __str__(self):
         """
