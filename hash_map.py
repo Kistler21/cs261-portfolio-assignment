@@ -142,7 +142,31 @@ class HashMap:
         Args:
             capacity: the new number of buckets.
         """
-        # FIXME: Write this function
+
+        # Expand number of buckets if needed
+        if self.capacity < capacity:
+            for _ in range(capacity - self.capacity):
+                self._buckets.append(LinkedList())
+
+        # Rehash all links
+        for bucket in self._buckets[:self.capacity]:
+            current_node = bucket.head
+            # Loop through all links in list
+            while current_node is not None:
+                key = current_node.key
+                value = current_node.value
+                new_hash = self._hash_function(key) % capacity
+                self._buckets[new_hash].add_front(key, value)
+                bucket.remove(key)
+                current_node = current_node.next
+
+        # Reduce number of buckets if needed
+        if self.capacity > capacity:
+            for _ in range(self.capacity - capacity):
+                self._buckets.pop(-1)
+
+        self.capacity = capacity
+                
 
     def put(self, key, value):
         """
