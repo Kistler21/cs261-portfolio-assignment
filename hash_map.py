@@ -112,7 +112,12 @@ class HashMap:
         """
         Empties out the hash table deleting all links in the hash table.
         """
-        # FIXME: Write this function
+        # Clear all linked lists
+        for i in range(self.capacity):
+            self._buckets[i] = LinkedList()
+
+        # Reset size
+        self.size = 0
 
     def get(self, key):
         """
@@ -195,7 +200,6 @@ class HashMap:
         """
         Prints all the links in each of the buckets in the table.
         """
-
         out = ""
         index = 0
         for bucket in self._buckets:
