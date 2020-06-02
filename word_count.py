@@ -52,6 +52,7 @@ def top_words(source, number):
             for w in words:
 
                 # Place word in hash map or update value by one
+                w = w.lower()
                 if not ht.contains_key(w):
                     keys.add(w)
                     ht.put(w, 1)
