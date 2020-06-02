@@ -50,7 +50,27 @@ def top_words(source, number):
         for line in f:
             words = rgx.findall(line)
             for w in words:
-                # FIXME: Complete this function
+
+                # Place word in hash map or update value by one
+                if not ht.contains_key(w):
+                    keys.add(w)
+                    ht.put(w, 1)
+                else:
+                    ht.put(w, ht.get(w) + 1)
+
+    # Sort the words by mentions
+    sorted_words = []
+    for word in keys:
+        next_word = (word, ht.get(word))
+        if sorted_words == []:
+            sorted_words.append(next_word)
+        else:
+            for index, value in enumerate(sorted_words):
+                if next_word[1] >= value[1]:
+                    sorted_words.insert(index, next_word)
+                    break
+
+    return sorted_words[:number]
 
 
-print(top_words("alice.txt",10))  # COMMENT THIS OUT WHEN SUBMITTING TO GRADESCOPE
+# print(top_words("alice.txt",10))  # COMMENT THIS OUT WHEN SUBMITTING TO GRADESCOPE

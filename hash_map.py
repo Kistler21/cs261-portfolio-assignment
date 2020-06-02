@@ -181,7 +181,7 @@ class HashMap:
         """
         hash_value = self._hash_function(key) % self.capacity
 
-        # Check if key has already been added
+        # Update the key if it has already been added
         node = self._buckets[hash_value].contains(key)
         if node is not None:
             node.value = value
